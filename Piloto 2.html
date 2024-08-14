@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regional Mexicano</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+        h1 {
+            margin: 0;
+        }
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .genre {
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        .genre h2 {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            margin: 0;
+            border-radius: 5px;
+        }
+        .artist {
+            background-color: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+        .artist:hover {
+            background-color: #f0f0f0;
+        }
+        .songs {
+            display: none;
+            margin-top: 10px;
+        }
+        .songs ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .songs li {
+            padding: 5px;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Información sobre el Regional Mexicano</h1>
+    <input type="text" id="searchInput" placeholder="Buscar por género, artista, canción o fecha...">
+</header>
+
+<div class="container" id="genreContainer">
+    <div class="genre">
+        <h2>Mariachi</h2>
+        <div class="artist">
+            Vicente Fernández
+            <div class="songs">
+                <ul>
+                    <li>Volver, Volver <span>(1972)</span></li>
+                    <li>El Rey <span>(1976)</span></li>
+                    <li>Mujeres Divinas <span>(1987)</span></li>
+                    <li>Por Tu Maldito Amor <span>(1989)</span></li>
+                    <li>Estos Celos <span>(2007)</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="artist">
+            Alejandro Fernández
+            <div class="songs">
+                <ul>
+                    <li>Como Quien Pierde una Estrella <span>(1995)</span></li>
+                    <li>Nube Viajera <span>(1997)</span></li>
+                    <li>Te Olvidé <span>(2019)</span></li>
+                    <li>Caballero <span>(2019)</span></li>
+                    <li>Decepciones <span>(2020)</span></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Agrega más artistas de Mariachi aquí -->
+    </div>
+
+    <div class="genre">
+        <h2>Banda</h2>
+        <div class="artist">
+            Banda El Recodo
+            <div class="songs">
+                <ul>
+                    <li>El Sinaloense <span>(1943)</span></li>
+                    <li>La Chona <span>(1998)</span></li>
+                    <li>Me Gusta Todo de Ti <span>(2010)</span></li>
+                    <li>Todo Tuyo <span>(2016)</span></li>
+                    <li>Hubiera Sido Como Tú <span>(2020)</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="artist">
+            Banda MS
+            <div class="songs">
+                <ul>
+                    <li>Mi Razón de Ser <span>(2012)</span></li>
+                    <li>Hermosa Experiencia <span>(2013)</span></li>
+                    <li>No Me Pidas Perdón <span>(2012)</span></li>
+                    <li>Me Vas a Extrañar <span>(2017)</span></li>
+                    <li>La Casita <span>(2019)</span></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Agrega más artistas de Banda aquí -->
+    </div>
+
+    <div class="genre">
+        <h2>Norteño</h2>
+        <div class="artist">
+            Los Tigres del Norte
+            <div class="songs">
+                <ul>
+                    <li>La Puerta Negra <span>(1986)</span></li>
+                    <li>Jefe de Jefes <span>(1997)</span></li>
+                    <li>Ni Parientes Somos <span>(2015)</span></li>
+                    <li>La Bala <span>(2015)</span></li>
+                    <li>Resistencia <span>(2022)</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="artist">
+            Intocable
+            <div class="songs">
+                <ul>
+                    <li>Fuerte No Soy <span>(1999)</span></li>
+                    <li>Y Todo Para Qué <span>(2004)</span></li>
+                    <li>Culpable Fui <span>(2013)</span></li>
+                    <li>Perdedor <span>(2016)</span></li>
+                    <li>Qué Me Has Hecho <span>(2021)</span></li>
+                </ul>
+            </div>
+        </div>
+        <!-- Agrega más artistas de Norteño aquí -->
+    </div>
+
+    <!-- Agrega más géneros y artistas aquí -->
+
+</div>
+
+<script>
+    const searchInput = document.getElementById('searchInput');
+    const genreContainer = document.getElementById('genreContainer');
+    const genres = genreContainer.getElementsByClassName('genre');
+
+    searchInput.addEventListener('keyup', function() {
+        const filter = searchInput.value.toLowerCase();
+
+        Array.from(genres).forEach(function(genre) {
+            const genreName = genre.getElementsByTagName('h2')[0].innerText.toLowerCase();
+            const artists = genre.getElementsByClassName('artist');
+
+            let genreMatch = genreName.includes(filter);
+            let artistMatch = false;
+
+            Array.from(artists).forEach(function(artist) {
+                const artistName = artist.innerText.toLowerCase();
+                const songs = artist.getElementsByClassName('songs')[0].getElementsByTagName('li');
+
+                let songMatch = false;
+
+                Array.from(songs).forEach(function(song) {
+                    const songText = song.innerText.toLowerCase();
+                    const songDate = song.getElementsByTagName('span')[0].innerText.toLowerCase();
+                    if (songText.includes(filter) || songDate.includes(filter)) {
+                        song.style.display = '';
+                        songMatch = true;
+                    } else {
+                        song.style.display = 'none';
+                    }
+                });
+
+                if (artistName.includes(filter) || songMatch) {
+                    artist.style.display = '';
+                    artistMatch = true;
+                } else {
+                    artist.style.display = 'none';
+                }
+            });
+
+            if (genreMatch || artistMatch) {
+                genre.style.display = '';
+            } else {
+                genre.style.display = 'none';
+            }
+        });
+    });
+
+    const artists = document.getElementsByClassName('artist');
+    Array.from(artists).forEach(function(artist) {
+        artist.addEventListener('click', function() {
+            const songs = this.getElementsByClassName('songs')[0];
+            if (songs.style.display === 'block') {
+                songs.style.display = 'none';
+            } else {
+                songs.style.display = 'block';
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
